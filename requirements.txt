@@ -1,0 +1,5 @@
+flask
+chromadb
+PyPDF2
+ollama
+werkzeug

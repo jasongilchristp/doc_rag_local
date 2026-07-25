@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chat with your file · local</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Chat with your file</h1>
+      <span class="status"><span class="dot"></span>runs on your machine · works offline</span>
+      <p class="lede">Upload a document, then ask it anything. The file never leaves your laptop.</p>
+    </header>
+
+    <!-- Upload: this is the book -->
+    <section class="panel">
+      <div class="panel-label">1 · Load a document</div>
+      <div class="drop">
+        <label class="file-btn">
+          Choose file
+          <input id="file" type="file" accept=".pdf,.txt,.md" hidden />
+        </label>
+        <span class="file-name" id="fileName">No file chosen</span>
+        <button class="primary" id="uploadBtn" disabled>Build the book</button>
+      </div>
+      <div class="upload-note" id="uploadNote"></div>
+    </section>
+
+    <!-- Chat -->
+    <section class="panel">
+      <div class="panel-head">
+        <div class="panel-label">2 · Ask about it</div>
+        <label class="model-select">
+          model
+          <select id="modelSelect"><option>loading…</option></select>
+        </label>
+      </div>
+      <div class="messages" id="messages">
+        <div class="empty" id="empty">Load a document above to start asking questions.</div>
+      </div>
+      <div class="composer">
+        <input id="question" type="text" placeholder="Ask something about your file…" disabled />
+        <button class="primary" id="sendBtn" disabled>Send</button>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const HAS_DOCUMENT = {{ 'true' if has_document else 'false' }};
+  </script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>

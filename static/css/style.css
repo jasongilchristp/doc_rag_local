@@ -1,0 +1,175 @@
+:root {
+  color-scheme: dark;
+  --paper:   #15171C;
+  --ink:     #ECEAE4;
+  --muted:   #948F86;
+  --line:    #2A2E36;
+  --card:    #1C1F26;
+  --elevated:#2A2F39;
+  --accent:  #E0913D;
+  --accent-ink: #15171C;
+  --accent-soft: rgba(224, 145, 61, 0.14);
+  --ok:      #5FB87A;
+  --err:     #E5736B;
+  --mono: ui-monospace, "SF Mono", "Cascadia Code", Menlo, Consolas, monospace;
+  --sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 48px 24px 80px;
+}
+
+header { margin-bottom: 32px; }
+
+h1 {
+  font-size: 30px;
+  letter-spacing: -0.02em;
+  margin: 0 0 10px;
+  font-weight: 650;
+}
+
+.status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  color: var(--accent);
+  background: var(--accent-soft);
+  border: 1px solid rgba(224, 145, 61, 0.32);
+  padding: 5px 11px;
+  border-radius: 999px;
+}
+.dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--accent);
+  animation: pulse 2.4s ease-in-out infinite;
+}
+@keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.35; } }
+
+.lede { color: var(--muted); margin: 14px 0 0; font-size: 15px; }
+
+.panel {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 22px;
+  margin-bottom: 22px;
+}
+.panel-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--muted);
+  margin-bottom: 14px;
+}
+
+.panel-head {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: 12px; margin-bottom: 14px; flex-wrap: wrap;
+}
+.panel-head .panel-label { margin-bottom: 0; }
+.model-select {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--mono); font-size: 12px; color: var(--muted);
+}
+.model-select select {
+  font-family: var(--mono); font-size: 12.5px; color: var(--ink);
+  background: var(--paper); border: 1px solid var(--line);
+  border-radius: 8px; padding: 6px 10px; cursor: pointer; max-width: 220px;
+}
+.model-select select:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.model-select select:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.drop {
+  display: flex; align-items: center; gap: 14px;
+  flex-wrap: wrap;
+}
+.file-btn {
+  font-family: var(--sans);
+  font-size: 14px;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  color: var(--ink);
+  padding: 9px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.file-btn:hover { border-color: #444a55; }
+.file-name { font-size: 14px; color: var(--muted); }
+
+button.primary {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border: none;
+  padding: 9px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button.primary:disabled { opacity: 0.4; cursor: not-allowed; }
+button.primary:hover:not(:disabled) { background: #EFA253; }
+
+.upload-note { font-size: 13px; margin-top: 12px; min-height: 18px; }
+.upload-note.ok  { color: var(--ok); }
+.upload-note.err { color: var(--err); }
+
+.messages { display: flex; flex-direction: column; gap: 14px; margin-bottom: 18px; }
+
+.empty {
+  color: var(--muted);
+  font-size: 15px;
+  text-align: center;
+  padding: 28px 12px;
+  border: 1px dashed var(--line);
+  border-radius: 10px;
+}
+
+.msg { max-width: 88%; padding: 12px 15px; border-radius: 12px; font-size: 15px; }
+.msg.user {
+  align-self: flex-end;
+  background: var(--elevated); color: var(--ink);
+  border-bottom-right-radius: 4px;
+}
+.msg.bot {
+  align-self: flex-start;
+  background: var(--card); border: 1px solid var(--line);
+  border-bottom-left-radius: 4px;
+  white-space: pre-wrap;
+}
+.msg.bot.thinking { color: var(--muted); font-family: var(--mono); font-size: 13px; }
+
+.composer { display: flex; gap: 10px; }
+.composer input {
+  flex: 1;
+  font-family: var(--sans);
+  font-size: 15px;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--card);
+  color: var(--ink);
+}
+.composer input::placeholder { color: var(--muted); }
+.composer input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.composer input:disabled { background: #1a1d23; opacity: 0.7; }
+
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; }
+}
